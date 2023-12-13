@@ -4,6 +4,504 @@
  */
 import { GenericContractsDeclaration } from "~~/utils/scaffold-eth/contract";
 
-const deployedContracts = {} as const;
+const deployedContracts = {
+  31337: {
+    Khafundme: {
+      address: "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+      abi: [
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "previousOwner",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "newOwner",
+              type: "address",
+            },
+          ],
+          name: "OwnershipTransferred",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "proposalId",
+              type: "uint256",
+            },
+            {
+              indexed: false,
+              internalType: "string",
+              name: "title",
+              type: "string",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "proposalDeadline",
+              type: "uint256",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "minimumVotes",
+              type: "uint256",
+            },
+            {
+              indexed: false,
+              internalType: "address",
+              name: "optionA",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "address",
+              name: "optionB",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "string",
+              name: "nameForOptionA",
+              type: "string",
+            },
+            {
+              indexed: false,
+              internalType: "string",
+              name: "nameForOptionB",
+              type: "string",
+            },
+          ],
+          name: "ProposalCreated",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "proposalId",
+              type: "uint256",
+            },
+            {
+              indexed: false,
+              internalType: "address",
+              name: "voter",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "enum Option",
+              name: "selectedOption",
+              type: "uint8",
+            },
+          ],
+          name: "VoteCasted",
+          type: "event",
+        },
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "_title",
+              type: "string",
+            },
+            {
+              internalType: "uint256",
+              name: "_proposalDurationInMinutes",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "_minimumVotes",
+              type: "uint256",
+            },
+            {
+              internalType: "address",
+              name: "_optionA",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "_optionB",
+              type: "address",
+            },
+            {
+              internalType: "string",
+              name: "_nameForOptionA",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "_nameForOptionB",
+              type: "string",
+            },
+          ],
+          name: "createProposal",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "_proposalId",
+              type: "uint256",
+            },
+          ],
+          name: "executeProposal",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "_proposalId",
+              type: "uint256",
+            },
+            {
+              internalType: "address",
+              name: "_voter",
+              type: "address",
+            },
+          ],
+          name: "getHasVoted",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "_proposalId",
+              type: "uint256",
+            },
+          ],
+          name: "getProposal",
+          outputs: [
+            {
+              internalType: "string",
+              name: "title",
+              type: "string",
+            },
+            {
+              internalType: "uint256",
+              name: "proposalDeadline",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "votesForOptionA",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "votesForOptionB",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "minimumVotes",
+              type: "uint256",
+            },
+            {
+              internalType: "address",
+              name: "optionA",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "optionB",
+              type: "address",
+            },
+            {
+              internalType: "string",
+              name: "nameForOptionA",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "nameForOptionB",
+              type: "string",
+            },
+            {
+              internalType: "bool",
+              name: "executed",
+              type: "bool",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "getProposalCount",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "_proposalId",
+              type: "uint256",
+            },
+          ],
+          name: "getWinner",
+          outputs: [
+            {
+              internalType: "string",
+              name: "winnerName",
+              type: "string",
+            },
+            {
+              internalType: "address",
+              name: "winnerAddress",
+              type: "address",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          name: "hasVoted",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "owner",
+          outputs: [
+            {
+              internalType: "address",
+              name: "",
+              type: "address",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "proposalCounter",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          name: "proposals",
+          outputs: [
+            {
+              internalType: "string",
+              name: "title",
+              type: "string",
+            },
+            {
+              internalType: "uint256",
+              name: "proposalDeadline",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "votesForOptionA",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "votesForOptionB",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "minimumVotes",
+              type: "uint256",
+            },
+            {
+              internalType: "address",
+              name: "optionA",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "optionB",
+              type: "address",
+            },
+            {
+              internalType: "string",
+              name: "nameForOptionA",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "nameForOptionB",
+              type: "string",
+            },
+            {
+              internalType: "bool",
+              name: "executed",
+              type: "bool",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "renounceOwnership",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "newOwner",
+              type: "address",
+            },
+          ],
+          name: "transferOwnership",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "_proposalId",
+              type: "uint256",
+            },
+            {
+              internalType: "enum Option",
+              name: "_selectedOption",
+              type: "uint8",
+            },
+          ],
+          name: "vote",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          name: "voterOption",
+          outputs: [
+            {
+              internalType: "enum Option",
+              name: "",
+              type: "uint8",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          name: "winners",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "proposalId",
+              type: "uint256",
+            },
+            {
+              internalType: "string",
+              name: "winnerName",
+              type: "string",
+            },
+            {
+              internalType: "address",
+              name: "winnerAddress",
+              type: "address",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+      ],
+      inheritedFunctions: {
+        owner: "@openzeppelin/contracts/access/Ownable.sol",
+        renounceOwnership: "@openzeppelin/contracts/access/Ownable.sol",
+        transferOwnership: "@openzeppelin/contracts/access/Ownable.sol",
+      },
+    },
+  },
+} as const;
 
 export default deployedContracts satisfies GenericContractsDeclaration;
